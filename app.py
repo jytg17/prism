@@ -11,7 +11,7 @@ from nltk import word_tokenize # to create tokens
 from nltk.corpus import stopwords # for stop words
 import random
 
-ntlk.download()
+nltk.download()
 
 from flask import Flask, render_template, request
 app = Flask(__name__)
