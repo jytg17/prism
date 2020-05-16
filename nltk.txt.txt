@@ -1,0 +1,3 @@
+popular
+punkt
+wordnet
