@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <title>PRISM</title>
+  <head>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      body {
+        font-family: monospace;
+		background: #E9ECE9;
+      }
+      h1 {
+        background-color: #E9ECE9;
+        display: inline-block;
+		font-family: 'Raleway', sans-serif;
+        font-size: 5em;
+        margin: 0;
+        padding: 14px;
+      }
+      h3 {
+        color: black;
+        font-size: 20px;
+        margin-top: 3px;
+        text-align: center;
+      }
+      #chatbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        margin-top: 60px;
+	      }
+      #userInput {
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        margin-top: 60px;
+		margin-bottom: 5px
+      }
+      #textInput {
+        width: 90%;
+        border: 1px solid green;
+        
+        font-family: monospace;
+        font-size: 14px;
+		border-radius: 25px;
+      }
+      .userText {
+        color: white;
+        font-family: monospace;
+        font-size: 12px;
+        text-align: right;
+        line-height: 40px;
+      }
+      .userText span {
+        background-color: #808080;
+        padding: 10px;
+        border-radius: 25px;
+      }
+      .botText {
+        color: white;
+        font-family: monospace;
+        font-size: 12px;
+        text-align: left;
+        line-height: 40px;
+      }
+      .botText span {
+        background-color: #4169e1;
+        padding: 10px;
+        border-radius: 25px;
+      }
+      #tidbit {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 300px;
+      }
+      .boxed {
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        
+        border: 1px solid green;
+		background: #FFF;
+      }
+      .box {
+        border: 2px solid black;
+      }
+	
+    </style>
+	
+  </head>
+  <body>
+  
+    <img />
+    <center>
+      <h1>
+        <img
+          src="img/logo1.png"
+          alt="PRISM"
+          style="width:200px;height:200px;"
+        /> <!--<font size = "3" face = "sans-serif"> Planning Repository Intelligent System Manager </font>-->
+      </h1>
+    </center>
+
+
+    <div class="boxed">
+      <div>
+        <div id="chatbox">
+
+          <p class="botText">
+		  <img
+            src="https://image.flaticon.com/icons/svg/1786/1786548.svg"
+            alt="PRISM"
+            style="width:40px;height:40px;"
+          />
+            <span>PRISM: Hi! Ask me about our HDB Towns!</span>
+          </p>
+        </div>
+        <div id="userInput">
+          <input id="textInput" type="text" name="msg" placeholder=" Let's go..." />
+        </div>
+      </div>
+      <script>
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + '</span><img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="user" style="width:40px;height:40px;"/></p>';
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function(data) {
+			var botHtml = '<p class="botText"><img src="https://image.flaticon.com/icons/svg/1786/1786548.svg" alt="PRISM" style="width:40px;height:40px;"/><span>' + data + "</span></p>";
+			$("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        $("#textInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>
