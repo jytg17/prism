@@ -12,6 +12,7 @@ from nltk.corpus import stopwords # for stop words
 import random
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
 
 from flask import Flask, render_template, request
 app = Flask(__name__)
