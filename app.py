@@ -10,8 +10,10 @@ from sklearn.metrics import pairwise_distances # to perfrom cosine similarity
 from nltk import word_tokenize # to create tokens
 from nltk.corpus import stopwords # for stop words
 import random
-
-nltk.download()
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 from flask import Flask, render_template, request
 app = Flask(__name__)
