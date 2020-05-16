@@ -13,5 +13,4 @@ Werkzeug==1.0.1
 pandas
 nltk 
 numpy
-re
 random
