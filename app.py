@@ -14,7 +14,7 @@ import random
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-df=pd.read_excel('dialog_talk_agent.xlsx')
+df=pd.read_excel('https://raw.githubusercontent.com/jytg17/prism/master/dialog_talk_agent.csv')
 df.ffill(axis = 0,inplace=True) # fills the null value with the previous value.
 
 # function that performs text normalization steps
